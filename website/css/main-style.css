@@ -1,0 +1,228 @@
+
+html *
+{
+   font-size: 1em !important;
+   font-family: 'Minecraft', sans-serif;
+   overflow-x: hidden; /* Hide horizontal scrollbar */
+
+}
+body
+{
+  background: #c3d3d3;
+
+}
+.disconected
+{
+  color: red;
+}
+.connecting
+{
+  color:goldenrod;
+}
+.connected
+{
+  color:green
+}
+.links
+{
+  margin-top: 3em;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.link
+{
+  cursor: pointer;
+  border-radius: 30px;
+}
+.link :hover
+{
+  border-radius: 30px;
+  animation-name: example2;
+  animation-duration: 0.75s;
+}
+
+
+@keyframes example2 {
+  0%  {   transform: scale(0.9);}
+  70%   {  transform: scale(0.8);}
+}
+.piano-container
+{
+  margin-top: 6em;
+}
+.btn-success
+{
+  border-color: #12465a;
+  background-color: #12465a;
+  color: #e1e8ed;
+}
+.btn-success:focus{background-color:#12465a;}
+
+.btn-success:hover
+{
+  background-color: #206c8a;
+  color: #e1e8ed;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #206c8a;
+  border-radius: 10px;
+}
+.alerts-box 
+{
+  margin-top: 1em;
+  background-color: transparent;
+  color: #e1e8ed;
+  z-index: 4;
+  position: absolute;
+  float: left;
+  padding-left: 80%;
+  pointer-events: none;
+}
+.alert
+{
+  animation-name: example;
+  animation-duration: 0.75s;
+}
+
+@keyframes example {
+  0%  { left:200px; top:0px;}
+  70%   {left:-10px; top:0px;}
+  100%   {left:0px; top:0px;}
+}
+
+.dropmenu-div
+{
+  display:flex;
+  margin:0.5em;
+  width:200px; 
+  justify-content:space-between; 
+}
+.dropmenu-div:hover
+{
+  background-color: rgb(228, 228, 228);
+}
+*.unselectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+    -ms-user-select: none;
+  user-select: none;
+}
+.closebtn {
+  margin-left: 15px;
+  color: black;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  pointer-events: all;
+}
+.to-remove {
+  background-color: red;
+  transition: opacity 1s;
+}
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: rgba(212, 152, 125, 0.2) ;
+}
+#app {
+  min-width: 1800px;
+  max-width: 1800px;
+}
+
+.keys {
+  margin-top: 2em;
+  border: 0px;
+  border-top: 40px solid #12465a;
+  border-left: 5px solid #12465a;
+  border-right: 5px solid #12465a;
+  border-bottom: 5px solid #12465a;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-style: solid;
+  background-color: #12465a;
+}
+
+.no-radious {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  float: left;
+  cursor: pointer;
+}
+
+li:hover
+{
+  background: #45989b;
+}
+li:active {
+  background: #5ce1e6;
+}
+
+
+
+.white {
+  height: 25em;
+  width: 2.4em;
+  z-index: 1;
+  border-left: 1px solid #12465a;
+  border-bottom: 1px solid #12465a;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(to bottom, #eee 0%, #e1e8ed 100%)
+}
+
+
+
+.black {
+  height: 13.0em;
+  width: 1.8em;
+  z-index: 2;
+  transform: translate(-65%, 0);
+  position: relative;
+  border-radius: 0 0 3px 3px;
+  background: #12465a
+}
+
+.note-on {
+  background: #5ce1e6;
+}
+
+.e,
+.h,
+.d,
+.g,
+.h,
+.a {
+  margin: 0 0 0 -2em
+}
