@@ -14,7 +14,7 @@ public class ClientDownloader
     public static String download(String url)
     {
         Path currentRelativePath = Paths.get("");
-        var output = Path.of(currentRelativePath.toAbsolutePath().toString(),"index.html");
+        Path output = Paths.get(currentRelativePath.toAbsolutePath().toString(),"index.html");
         try {
             URL website = null;
             website = new URL(url);

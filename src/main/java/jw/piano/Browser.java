@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Browser {
     public static void Open(String url) {
-        var os = System.getProperty("os.name").toLowerCase();
+        String os = System.getProperty("os.name").toLowerCase();
         try
         {
             if (os.indexOf("win") >= 0) {
