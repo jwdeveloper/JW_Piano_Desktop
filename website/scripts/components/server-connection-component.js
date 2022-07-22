@@ -1,6 +1,8 @@
 Vue.component('server-connection-component', {
     props: ['global'],
     mounted() {
+  
+      this.token = "ewogICJzZXJ2ZXJJUCI6ICJsb2NhbGhvc3QiLAogICJwb3J0IjogMjAyMiwKICAiYSI6ICI3NzY5NTUyNTYyNDI5MDUxOTQ0IiwKICAiYiI6ICItNjI5MjUzNzQxNTk1MTA1MzU2MCIKfQ=="
     },
     data: function () 
     {
@@ -38,7 +40,7 @@ Vue.component('server-connection-component', {
               <button class="btn btn-success" style="display:flex; gap:1em" type="button" v-on:click="connect()">Connect
               </button>
           </div>
-          <input type="text" class="form-control" placeholder="enter token here" v-model="token">
+          <input type="text" class="form-control" placeholder="enter token here"  v-model="token">
       </div>
       `})
  

@@ -19,6 +19,11 @@ function publichAlert(message, type)
 }
 
 
+function refreshKeyboard()
+{
+    noteHandler.refresh()
+}
+
 noteHandler = null
 function setNoteHanlder(handler)
 {

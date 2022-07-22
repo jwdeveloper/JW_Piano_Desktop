@@ -6,6 +6,8 @@ class PianoSocket {
     this.buffer = new ArrayBuffer(23);
     this.view = new DataView(this.buffer, 0);
     this.statusHandler = "disconnected";
+
+    //window.requestAnimationFrame(this);
   }
   setToken(token) {
     try
@@ -75,18 +77,21 @@ class PianoSocket {
 
   sendNoteRequest(midiEvent, noteNumber, velocity) {
 
-     if(this.connection == null)
-     {
-      return
-     }
+    ic.play("Ab2", ac.currentTime, {gain:0.01});
+    
+    if(this.connection == null)
+    {
+     return
+    }
 
-    this.view.setInt32(0, 0);
-    this.view.setBigUint64(4, this.aKey )
-    this.view.setBigUint64(12, this.bKey )
-    this.view.setInt8(20, midiEvent);
-    this.view.setInt8(21, noteNumber);
-    this.view.setInt8(22, velocity);
-    this.connection.send(this.buffer);
+   this.view.setInt32(0, 0);
+   this.view.setBigUint64(4, this.aKey )
+   this.view.setBigUint64(12, this.bKey )
+   this.view.setInt8(20, midiEvent);
+   this.view.setInt8(21, noteNumber);
+   this.view.setInt8(22, velocity);
+
+   this.connection.send(this.buffer);
   }
 }
 

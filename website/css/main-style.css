@@ -3,8 +3,23 @@ html *
 {
    font-size: 1em !important;
    font-family: 'Minecraft', sans-serif;
-   overflow-x: hidden; /* Hide horizontal scrollbar */
+ /*   overflow-x: hidden; Hide horizontal scrollbar */
 
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #e1e8ed;
+  background-color: #12465a;
+}
+.midi-player
+{
+  border-style: solid;
+  border: #12465a;
 }
 body
 {
@@ -67,6 +82,7 @@ body
 }
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 /* Track */

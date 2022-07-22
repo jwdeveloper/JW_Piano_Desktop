@@ -26,7 +26,7 @@ Vue.component('midi-devices-component', {
    },
     template: `
     <div>
-      <div class="dropdown" style = "margin-top:1em; height:100px" >
+      <div class="dropdown" >
         <button class="btn btn-success btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Midi output</button>
         <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton" >
           <div class ="dropmenu-div "  v-for="device in devices" >

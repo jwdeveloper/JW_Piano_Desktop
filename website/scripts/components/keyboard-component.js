@@ -12,6 +12,14 @@ Vue.component('keyboard-component', {
        }
    },
     methods: {
+
+     refresh()
+     {
+        for(const key of this.keyboard.values())
+        {
+            key.className = key.className.replace(" note-on", "");
+        }
+     },
      handle_click(index)
      {
         publichNodeEvent(0,index, 100);
@@ -27,13 +35,13 @@ Vue.component('keyboard-component', {
                
                 if(velocity > 0)
                 {
-                    key.className = key.className+" note-on" 
+                    key.className = key.activeName
                 }
                 else
                 {
-                    key.className = key.className.replace(" note-on", "");
+                    key.className = key.inactiveName
                 }
-                console.log(nodeIndex , key.index,  key.className)
+               // console.log(nodeIndex , key.index,  key.className)
                 return
               }
           }
@@ -74,7 +82,9 @@ Vue.component('keyboard-component', {
             result.push(
                 {
                     index:index,
-                    className: className
+                    className: className,
+                    inactiveName : className,
+                    activeName: className+" note-on"
                 }
             );
         }
