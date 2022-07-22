@@ -2,7 +2,7 @@ Vue.component('server-connection-component', {
     props: ['global'],
     mounted() {
   
-      this.token = "ewogICJzZXJ2ZXJJUCI6ICJsb2NhbGhvc3QiLAogICJwb3J0IjogMjAyMiwKICAiYSI6ICI3NzY5NTUyNTYyNDI5MDUxOTQ0IiwKICAiYiI6ICItNjI5MjUzNzQxNTk1MTA1MzU2MCIKfQ=="
+      //this.token = "ewogICJzZXJ2ZXJJUCI6ICJsb2NhbGhvc3QiLAogICJwb3J0IjogMjAyMiwKICAiYSI6ICI3NzY5NTUyNTYyNDI5MDUxOTQ0IiwKICAiYiI6ICItNjI5MjUzNzQxNTk1MTA1MzU2MCIKfQ=="
     },
     data: function () 
     {
