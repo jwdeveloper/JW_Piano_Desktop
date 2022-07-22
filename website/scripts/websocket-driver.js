@@ -77,12 +77,16 @@ class PianoSocket {
 
   sendNoteRequest(midiEvent, noteNumber, velocity) {
 
-
-    //ic.play("Ab2", ac.currentTime, {gain:0.01});
+    
     
     if(this.connection == null)
     {
      return
+    }
+
+    if(ic != null)
+    {
+      ic.play("Ab2", ac.currentTime, {gain:0.01});
     }
 
    this.view.setInt32(0, 0);
