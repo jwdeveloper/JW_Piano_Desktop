@@ -101,7 +101,7 @@ class PianoSocket {
 
     if(ic != null)
     {
-      ic.play("Ab2", ac.currentTime, {gain:0.001});
+      ic.play("Ab2", ac.currentTime, {gain:0.01});
     }
 
    this.view.setInt32(0, 0);
