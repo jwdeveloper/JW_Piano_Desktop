@@ -75,6 +75,21 @@ class PianoSocket {
     this.connection.send(buffer);
   }
 
+    sendRefreshRequest() {
+       if(this.connection == null)
+        {
+         return
+        }
+        this.view.setInt32(0, 0);
+        this.view.setBigUint64(4, this.aKey )
+        this.view.setBigUint64(12, this.bKey )
+        this.view.setInt8(20, 2);
+        this.view.setInt8(21, 0);
+        this.view.setInt8(22, 0);
+
+        this.connection.send(this.buffer);
+    }
+
   sendNoteRequest(midiEvent, noteNumber, velocity) {
 
     
@@ -86,7 +101,7 @@ class PianoSocket {
 
     if(ic != null)
     {
-      ic.play("Ab2", ac.currentTime, {gain:0.01});
+      ic.play("Ab2", ac.currentTime, {gain:0.001});
     }
 
    this.view.setInt32(0, 0);

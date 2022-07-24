@@ -106,6 +106,18 @@ Vue.component('midi-player-component', {
         this.player = new MidiPlayer.Player((event) => {
 
         
+         /* if(event.name != "Controller Change" && 
+            event.name != "Note on" && 
+            event.name != "Note off")
+            {
+              console.log(event.name, event)
+            }*/
+
+            if(event.name == "MIDI port" || event.name == "End of Track" ||  event.name == "Sequence/Track Name")
+            {
+              publishRefreshEvent();
+            }
+
           if(event.name == "Controller Change")
           {
             if(event.value == 0)
@@ -119,9 +131,8 @@ Vue.component('midi-player-component', {
               publichNodeEvent(1,event.number,1)
             }
           }
-        console.log(event.noteName)
           if (event.name == 'Note on') {
-            console.log(event)
+           
           //  instrument.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
             publichNodeEvent(0, event.noteNumber, event.velocity);
           }

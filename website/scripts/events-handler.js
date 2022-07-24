@@ -37,3 +37,10 @@ function publichNodeEvent(packetId, nodeIndex, velocity)
      return
     noteHandler.handle_note_event(nodeIndex, velocity)
 }
+
+function publishRefreshEvent()
+{
+    console.log('public refresh notes event')
+    pianoSocket.sendRefreshRequest()
+    noteHandler.refresh();
+}
