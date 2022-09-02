@@ -165,6 +165,7 @@ Vue.component('midi-player-component', {
         open MIDI
         </label> 
         <midi-devices-component v-bind:global="global"></midi-devices-component>
+        <keyboard-input-component v-bind:global="global"></keyboard-input-component>
         </div>
       
          <div class ="play-box" >

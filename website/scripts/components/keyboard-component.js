@@ -4,21 +4,37 @@ Vue.component('keyboard-component', {
      {
        this.keyboard = create_keyboard()
        setNoteHanlder(this)
+       this.handle_keyboard_click()
     },
     data: function () 
     {
        return {
-        keyboard: []
+        keyboard: [],
+        key_mapping: {}
        }
    },
     methods: {
-
      refresh()
      {
         for(const key of this.keyboard.values())
         {
             key.className = key.className.replace(" note-on", "");
         }
+     },
+     handle_keyboard_click()
+     {
+        window.addEventListener('keydown', (e) => 
+        {
+           console.log(e, this.global.keyboard_mapping)
+           let id = this.global.keyboard_mapping[e.key];
+           if(id == null)
+           {
+            return
+           }
+           this.handle_click(id)
+           this.handle_note_event(id,100)
+
+        });
      },
      handle_click(index)
      {
@@ -29,7 +45,6 @@ Vue.component('keyboard-component', {
      {
           for(const key of this.keyboard.values())
           {
-        
               if(nodeIndex === key.index)
               {
                
@@ -41,7 +56,6 @@ Vue.component('keyboard-component', {
                 {
                     key.className = key.inactiveName
                 }
-               // console.log(nodeIndex , key.index,  key.className)
                 return
               }
           }

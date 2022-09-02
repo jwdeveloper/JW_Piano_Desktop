@@ -37,8 +37,6 @@
 
 </body>
 
-<script src="scripts/dev.js"></script>
-
 
 
 <script>
@@ -55,6 +53,7 @@
             global:
             {
               url:githubURL,
+              keyboard_mapping:{},
               token:
               {
                 value: "",
@@ -71,6 +70,28 @@
         {
 
         },
+        mounted()
+         {
+            let mappingsJSON = window.localStorage.getItem("keyboard_mapping");
+            const global = this.global;
+            if(mappingsJSON == null)
+            {
+              fetch('resources/example_keyboard_mapping.txt').then(response => response.text())
+              .then(e => 
+              {
+                 var mappings = parseKeyboardMappings(e);
+                 if(mappings == null)
+                 {
+                   return
+                 }
+                 global.keyboard_mapping = mappings;
+                 publichAlert("Default keybaord mapping loaded","success")
+              });
+              return;
+            }
+            const mappings = JSON.parse(mappingsJSON);
+            global.keyboard_mapping = mappings;
+        }
     })
 }
   
@@ -119,7 +140,7 @@
   scripts.push("components/server-connection-component")
   scripts.push("components/keyboard-component")
   scripts.push("components/midi-devices-component")
-
+  scripts.push("components/keybord-input-component")
   function loadScript(scriptUrl) {
   const script = document.createElement('script');
   script.src = scriptUrl;
