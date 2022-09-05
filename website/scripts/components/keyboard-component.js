@@ -23,10 +23,28 @@ Vue.component('keyboard-component', {
      },
      handle_keyboard_click()
      {
+        let id = undefined;
         window.addEventListener('keydown', (e) => 
         {
            console.log(e, this.global.keyboard_mapping)
-           let id = this.global.keyboard_mapping[e.key];
+           if(e.location == 3){
+                // Kalimba scale
+                // 3 is Numpad area
+                if(e.ctrlKey == true){
+                    // when press Ctrl
+                    id = this.global.keyboard_mapping["Ctrl" + "+" + e.code];
+                }else if(e.key == "End"){
+                    id = this.global.keyboard_mapping["Shift" + "+" + e.code];
+                }else if(e.key == "ArrowDown"){
+                    id = this.global.keyboard_mapping["Shift" + "+" + e.code];
+                }else if(e.key == "PageDown"){
+                    id = this.global.keyboard_mapping["Shift" + "+" + e.code];
+                }else{
+                    id = this.global.keyboard_mapping[e.code];
+                }
+           }else{
+               id = this.global.keyboard_mapping[e.code];
+           }
            if(id == null)
            {
             return

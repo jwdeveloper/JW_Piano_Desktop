@@ -1,8 +1,3 @@
-
-
-
-
-
 function parseKeyboardMappings(text)
 {
     var lines = text.split('\n');
@@ -14,13 +9,6 @@ function parseKeyboardMappings(text)
             continue
         }
         var lineSplit = line.split(':');
-        if(lineSplit.length != 2)
-        {
-            publichAlert("Bad formatting: "+line, 'danger')
-            publichAlert("Format should look like: key:note_id  ", 'warning')
-            publichAlert("Example: a:60  ", 'warning')
-            return null;
-        }
         let key = lineSplit[0];
         let index = parseInt(lineSplit[1]);
         temp_mapping[key] = index
