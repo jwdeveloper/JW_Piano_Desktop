@@ -33,7 +33,7 @@ Vue.component('keyboard-component', {
                 if(e.ctrlKey == true){
                     // when press Ctrl
                     id = this.global.keyboard_mapping["Ctrl" + "+" + e.code];
-                } else if(e.key == "End"){
+                }else if(e.key == "End"){
                     id = this.global.keyboard_mapping["Shift" + "+" + e.code];
                 }else if(e.key == "ArrowDown"){
                     id = this.global.keyboard_mapping["Shift" + "+" + e.code];
