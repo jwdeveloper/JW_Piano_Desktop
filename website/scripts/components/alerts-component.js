@@ -15,14 +15,16 @@ Vue.component('alerts-component', {
                 this.alerts.splice(index, 1);
             }
         },
-        add(message, type, timeout = 1000) {
+        add(message, type, timeout = 5000) {
 
             const alert =    {
                 message: message,
                 type: "alert-" + type
             };
 
+            timeout = timeout+this.alerts.length*1000;
             this.alerts.push(alert);
+            setTimeout(e => { this.remove(alert); }, timeout);
         }
     },
     template: `

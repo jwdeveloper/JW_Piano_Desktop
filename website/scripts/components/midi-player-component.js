@@ -45,8 +45,6 @@ Vue.component('midi-player-component', {
       {
         this.player.play()
       }
-      
-
     },
 
     stopPlaying() {
@@ -66,7 +64,6 @@ Vue.component('midi-player-component', {
       this.isPlaying = true;
     },
 
-
     withSound()
     {
      
@@ -83,9 +80,6 @@ Vue.component('midi-player-component', {
         this.progress = 0
         return
        }
-      
-       
-
       console.log('time',this.progress)
       this.player.skipToPercent(this.progress)
       refreshKeyboard()
@@ -104,15 +98,6 @@ Vue.component('midi-player-component', {
       reader.addEventListener("load", () => {
 
         this.player = new MidiPlayer.Player((event) => {
-
-        
-         /* if(event.name != "Controller Change" && 
-            event.name != "Note on" && 
-            event.name != "Note off")
-            {
-              console.log(event.name, event)
-            }*/
-
             if(event.name == "MIDI port" || event.name == "End of Track" ||  event.name == "Sequence/Track Name")
             {
               publishRefreshEvent();
@@ -159,15 +144,7 @@ Vue.component('midi-player-component', {
   template: `
         <div class = "midi-player">
 
-        <div style = "display:flex; gap: 1em; margin-bottom:1em;">
-        <label class="custom-file-upload">
-        <input type="file"  v-on:change="withSound()" v-on:click="stopPlaying()" accept=".midi,.mid"/>
-        open MIDI
-        </label> 
-        <midi-devices-component v-bind:global="global"></midi-devices-component>
-        <keyboard-input-component v-bind:global="global"></keyboard-input-component>
-        </div>
-      
+       
          <div class ="play-box" >
          <button type="button" class="btn btn-success btn-sm"  v-on:click ="changeState()">
            <i v-if="isPlaying === false"  class="fa fa-play" ></i>
@@ -175,7 +152,14 @@ Vue.component('midi-player-component', {
          </button>
           <input id ="timeline"  type="range" class="custom-range" v-on:change="changeTime(this.value)" min="0" max="100"  v-model="progress">
          </div>
-      
+
+         <div style = "display:flex; gap: 1em; margin-top:1em;">
+         <label class="custom-file-upload">
+         <input type="file"  v-on:change="withSound()" v-on:click="stopPlaying()" accept=".midi,.mid"/>
+         open MIDI
+         </label> 
+         <midi-devices-component v-bind:global="global"></midi-devices-component>
+         </div>
    </div>
 </div>
 

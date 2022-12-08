@@ -20,29 +20,22 @@
 
 
 <body>
-  
   <div  id="app" class="container">
     <alerts-component></alerts-component>
     <links-component  v-bind:global="global"></links-component>
     <div  class="piano-container" >
-
         <server-connection-component v-bind:global="global"></server-connection-component>
-     
         <keyboard-component v-bind:global="global"></keyboard-component>
-      
         <midi-player-component v-bind:global="global"></midi-player-component>
+        <keyboard-mappings v-bind:global="global"></keyboard-mappings>
     </div> 
-
   </div>
-
 </body>
 
-
-
 <script>
+  //in order to open page with local scripts set `localFileSource` to True
   let localFileSource = false;
   let githubURL = "https://jwdeveloper.github.io/JW_Piano_Desktop/website/"
-
   function onAllScripsLoaded()
 {
   console.log("Scripts loaded")
@@ -52,7 +45,9 @@
         data: {
             global:
             {
+              localFile: localFileSource,
               url:githubURL,
+              keyboard: [],
               keyboard_mapping:{},
               token:
               {
@@ -72,25 +67,7 @@
         },
         mounted()
          {
-            let mappingsJSON = window.localStorage.getItem("keyboard_mapping");
-            const global = this.global;
-            if(mappingsJSON == null)
-            {
-              fetch('resources/example_keyboard_mapping.txt').then(response => response.text())
-              .then(e => 
-              {
-                 var mappings = parseKeyboardMappings(e);
-                 if(mappings == null)
-                 {
-                   return
-                 }
-                 global.keyboard_mapping = mappings;
-                 publichAlert("Default keybaord mapping loaded","success")
-              });
-              return;
-            }
-            const mappings = JSON.parse(mappingsJSON);
-            global.keyboard_mapping = mappings;
+           
         }
     })
 }
@@ -108,6 +85,7 @@
   let csss = []
   csss.push("main-style")
   csss.push("midi-player")
+  csss.push("keyboard-mappings")
   for(const css of csss)
   {
     const element = document.createElement("link");
@@ -130,17 +108,14 @@
   scripts.push("midi-driver")
   scripts.push("websocket-driver")
   scripts.push("sound-driver")
-
   scripts.push("events-handler")
-
-
   scripts.push("components/midi-player-component")
   scripts.push("components/links-component")
   scripts.push("components/alerts-component")
   scripts.push("components/server-connection-component")
   scripts.push("components/keyboard-component")
   scripts.push("components/midi-devices-component")
-  scripts.push("components/keybord-input-component")
+  scripts.push("components/keyboard-mappings-component")
   function loadScript(scriptUrl) {
   const script = document.createElement('script');
   script.src = scriptUrl;
@@ -155,10 +130,7 @@
   });
 }
 
-
-
 let scriptsToLoad = scripts.length;
-
 for(const script of scripts)
   {
     loadScript(scriptSource+"/"+script+".js").
@@ -190,7 +162,5 @@ console.log(iconLink)
   element.type="image/png"
   document.getElementsByTagName('head')[0].appendChild(element);
 </script>
-
-
 </html>
 

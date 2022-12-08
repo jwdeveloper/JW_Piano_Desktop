@@ -3,30 +3,7 @@
 
 
 
-function parseKeyboardMappings(text)
-{
-    var lines = text.split('\n');
-    var temp_mapping= {};
-    for(var i = 0; i < lines.length; i++){
-        let line = lines[i]
-        if(line.length == 0)
-        {
-            continue
-        }
-        var lineSplit = line.split(':');
-        if(lineSplit.length != 2)
-        {
-            publichAlert("Bad formatting: "+line, 'danger')
-            publichAlert("Format should look like: key:note_id  ", 'warning')
-            publichAlert("Example: a:60  ", 'warning')
-            return null;
-        }
-        let key = lineSplit[0];
-        let index = parseInt(lineSplit[1]);
-        temp_mapping[key] = index
-    }
-    return temp_mapping;
-}
+
 
 alertHandler = null
 function setAlertsHandler(handler)
@@ -36,8 +13,6 @@ function setAlertsHandler(handler)
 
 function publichAlert(message, type)
 {
-    console.log(alertHandler)
-
     if(alertHandler == null)
     return
     alertHandler.add(message,type)
@@ -53,6 +28,12 @@ noteHandler = null
 function setNoteHanlder(handler)
 {
     noteHandler = handler
+}
+
+function setDisplayMappings(state)
+{
+
+    noteHandler.displayMappings(state)
 }
 
 function publichNodeEvent(packetId, nodeIndex, velocity)

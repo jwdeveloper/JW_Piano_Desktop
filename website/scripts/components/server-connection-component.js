@@ -23,8 +23,8 @@ Vue.component('server-connection-component', {
         }
         pianoSocket.setStatusHandler(this.status)
 
-        let result = pianoSocket.setToken(this.token)
-        if(result == false)
+        let isTokenValid = pianoSocket.setToken(this.token)
+        if(isTokenValid == false)
         {
           this.status = "disconected"
           publichAlert("Invalid value of token!","danger")
@@ -34,7 +34,6 @@ Vue.component('server-connection-component', {
       }
    },
     template: `
-        
      <div class="input-group">
           <div class="input-group-prepend " >
               <button class="btn btn-success" style="display:flex; gap:1em" type="button" v-on:click="connect()">Connect

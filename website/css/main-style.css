@@ -15,6 +15,11 @@ input[type="file"] {
   cursor: pointer;
   color: #e1e8ed;
   background-color: #12465a;
+  
+}
+
+.custom-file-upload:hover {
+  background-color: #216580;
 }
 .midi-player
 {
@@ -73,12 +78,15 @@ body
   background-color: #12465a;
   color: #e1e8ed;
 }
-.btn-success:focus{background-color:#12465a;}
+.btn-success:focus{background-color:#12465a;
+  border-color: white;
+}
 
 .btn-success:hover
 {
   background-color: #206c8a;
   color: #e1e8ed;
+  border-color: white;
 }
 ::-webkit-scrollbar {
   width: 5px;
