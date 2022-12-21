@@ -27,10 +27,16 @@ Vue.component('keyboard-component', {
                 }
 
                 for (const key of this.global.keyboard.values()) {
+                 
                     if (key.mapping === e.code) {
+                       
                         this.handle_click(key.index)
                         this.handle_note_event(key.index, 100)
-                        setTimeout(e => { this.handle_note_event(key.index, 0); }, 100);
+                        publichNodeEvent(0, key.index, 100); 
+                        setTimeout(e => { 
+                            this.handle_note_event(key.index, 0); 
+                            publichNodeEvent(0, key.index, 0); 
+                        }, 100);
                     }
                 }
             });
