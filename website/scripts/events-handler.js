@@ -36,9 +36,9 @@ function setDisplayMappings(state)
     noteHandler.displayMappings(state)
 }
 
-function publichNodeEvent(packetId, nodeIndex, velocity)
+function publichNodeEvent(packetId, nodeIndex, velocity, track)
 {
-    pianoSocket.sendNoteRequest(packetId, nodeIndex, velocity);
+    pianoSocket.sendNoteRequest(packetId, nodeIndex, velocity, track);
     if(packetId != 0)
      return
     noteHandler.handle_note_event(nodeIndex, velocity)

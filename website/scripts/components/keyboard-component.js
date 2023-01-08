@@ -32,10 +32,10 @@ Vue.component('keyboard-component', {
                        
                         this.handle_click(key.index)
                         this.handle_note_event(key.index, 100)
-                        publichNodeEvent(0, key.index, 100); 
+                        publichNodeEvent(0, key.index, 100,0); 
                         setTimeout(e => { 
                             this.handle_note_event(key.index, 0); 
-                            publichNodeEvent(0, key.index, 0); 
+                            publichNodeEvent(0, key.index, 0,0); 
                         }, 100);
                     }
                 }
@@ -43,13 +43,13 @@ Vue.component('keyboard-component', {
         },
         handle_click(key) {
             const index = key.index;
-            publichNodeEvent(0, index, 100);
+            publichNodeEvent(0, index, 100,0);
             window.dispatchEvent(new CustomEvent('note-mouse-click', {
                 detail: {
                     pianoKey: key
                 }
             }));
-            setTimeout(e => { publichNodeEvent(0, index, 0); }, 100);
+            setTimeout(e => { publichNodeEvent(0, index, 0,0); }, 100);
         },
         handle_mouse_over(key) {
             key.isMapping = true

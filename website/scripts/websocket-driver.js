@@ -18,6 +18,28 @@ class PianoSocket {
       this.url = "ws://" + payload.serverIP + ":" + payload.port;
       this.aKey = BigInt(payload.a);
       this.bKey = BigInt(payload.b);
+      this.pluginVersion = payload.pluginVersion;
+
+
+      if(this.pluginVersion == undefined)
+      {
+        this.pluginVersion = "1.0.0"
+      }
+
+
+
+      if(this.pluginVersion == "1.0.0")
+      {
+        this.buffer = new ArrayBuffer(23);
+        this.view = new DataView(this.buffer, 0);
+      }
+      if(this.pluginVersion != "1.0.0")
+      {
+        this.buffer = new ArrayBuffer(24);
+        this.view = new DataView(this.buffer, 0);
+      }
+
+      console.log("Plugin Version",this.pluginVersion)
       return true;
     }
     catch(e)
@@ -90,7 +112,7 @@ class PianoSocket {
         this.connection.send(this.buffer);
     }
 
-  sendNoteRequest(midiEvent, noteNumber, velocity) {
+  sendNoteRequest(midiEvent, noteNumber, velocity, track) {
 
     
     
@@ -104,14 +126,33 @@ class PianoSocket {
       ic.play("Ab2", ac.currentTime, {gain:0.01});
     }
 
-   this.view.setInt32(0, 0);
-   this.view.setBigUint64(4, this.aKey )
-   this.view.setBigUint64(12, this.bKey )
-   this.view.setInt8(20, midiEvent);
-   this.view.setInt8(21, noteNumber);
-   this.view.setInt8(22, velocity);
 
-   this.connection.send(this.buffer);
+
+    if(this.pluginVersion === "1.0.0")
+    {
+      this.view.setInt32(0, 0);
+      this.view.setBigUint64(4, this.aKey )
+      this.view.setBigUint64(12, this.bKey )
+      this.view.setInt8(20, midiEvent);
+      this.view.setInt8(21, noteNumber);
+      this.view.setInt8(22, velocity);
+   
+      this.connection.send(this.buffer);
+    }
+    if(this.pluginVersion !== "1.0.0")
+    {
+    
+      this.view.setInt32(0, 0);
+      this.view.setBigUint64(4, this.aKey )
+      this.view.setBigUint64(12, this.bKey )
+      this.view.setInt8(20, midiEvent);
+      this.view.setInt8(21, noteNumber);
+      this.view.setInt8(22, velocity);
+      this.view.setInt8(23, track);
+      this.connection.send(this.buffer);
+    }
+
+  
   }
 }
 

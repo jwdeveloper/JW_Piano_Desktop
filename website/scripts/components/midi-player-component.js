@@ -108,22 +108,22 @@ Vue.component('midi-player-component', {
             if(event.value == 0)
             {
               
-              publichNodeEvent(1,event.number,0)
+              publichNodeEvent(1,event.number,0,0)
             }
             if(event.value == 127)
             {
               alreaduRelese = false;
-              publichNodeEvent(1,event.number,1)
+              publichNodeEvent(1,event.number,1,0)
             }
           }
           if (event.name == 'Note on') {
            
           //  instrument.play(event.noteName, ac.currentTime, {gain:event.velocity/100});
-            publichNodeEvent(0, event.noteNumber, event.velocity);
+            publichNodeEvent(0, event.noteNumber, event.velocity,event.track);
           }
 
           if (event.name == 'Note off') {
-            publichNodeEvent(0, event.noteNumber, 0);
+            publichNodeEvent(0, event.noteNumber, 0,0);
           }
          
         });
